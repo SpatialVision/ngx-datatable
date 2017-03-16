@@ -366,12 +366,12 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   @Input() rowIdentity: (x: any) => any = ((x: any) => x);
 
   /**
-   * Row specific classes. 
+   * Row specific classes.
    * Similar implementation to ngClass.
-   * 
+   *
    *  [rowClass]="'first second'"
    *  [rowClass]="{ 'first': true, 'second': true, 'third': false }"
-   * 
+   *
    * @type {*}
    * @memberOf DatatableComponent
    */
@@ -948,10 +948,8 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
       return Object.assign({}, c);
     });
 
-    const prevCol = cols[newValue];
-    cols[newValue] = column;
-    cols[prevValue] = prevCol;
-
+    cols.splice(prevValue, 1);
+    cols.splice(newValue, 0, column);
     this.columns = cols;
 
     this.reorder.emit({
